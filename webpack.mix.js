@@ -1,17 +1,41 @@
 const mix = require('laravel-mix');
-
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel applications. By default, we are compiling the CSS
- | file for the application as well as bundling up all the JS files.
- |
- */
-
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const webpack = require('webpack');
+module.exports = {
+    //...
+    plugins: [
+        // Ignore all locale files of moment.js
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new VueLoaderPlugin()
+    ],
+};
+mix.options({
+    terser: {
+        terserOptions: {
+            warnings: true
+        }
+    }
+});
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/sass/app.scss', 'public/css')
+    .vue()
+    .webpackConfig({
+        plugins: [
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+        ],
+        output: {
+            chunkFilename: 'js/[name].js?id=[chunkhash]',
+            sourceMapFilename: "index.js.map"
+        },
+        resolve: {
+            alias: {
+                vue$: 'vue/dist/vue.runtime.esm.js',
+                '@': path.resolve('resources/js'),
+            },
+        },
+    })
+    .babelConfig({
+        plugins: ['@babel/plugin-syntax-dynamic-import'],
+    })
+    .version();
