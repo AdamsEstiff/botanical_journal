@@ -6,6 +6,7 @@ import lang from 'element-ui/lib/locale/lang/es'
 import 'element-ui/lib/theme-chalk/reset.css'
 import locale from 'element-ui/lib/locale'
 
+
 locale.use(lang);
 Vue.use(VueResource);
 Vue.use(InertiaApp);

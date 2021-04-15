@@ -33,6 +33,8 @@ class BotanicalTable extends Migration
         Schema::create('plants', function (Blueprint $table){
             $table->increments('id');
             $table->string('name');
+            $table->integer('price');
+            $table->string('specialCares');
             $table->Text('image');
             $table->string('root');
             $table->string('stem');

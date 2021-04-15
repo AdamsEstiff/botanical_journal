@@ -9,8 +9,12 @@
 
     <title>Botanical</title>
     <link rel="icon" type="image/jpg"
-          href="https://images-platform.99static.com/6D5xMYSf3YV_yiGpW2HVQHWajWs=/0x0:960x960/500x500/top/smart/99designs-contests-attachments/99/99346/attachment_99346234">
+          href="images/logos/logo.PNG">
 
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -23,8 +27,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-
-@inertia
-
+    @inertia
 </body>
 </html>
